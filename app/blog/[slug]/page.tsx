@@ -413,6 +413,15 @@ const blogPosts = {
   },
 }
 
+export async function generateStaticParams() {
+  // Get all blog post slugs from your blogPosts object
+  const slugs = Object.keys(blogPosts)
+  
+  return slugs.map((slug) => ({
+    slug: slug,
+  }))
+}
+
 export default function BlogPost({ params }: { params: { slug: string } }) {
   const { toast } = useToast()
   const post = blogPosts[params.slug]
